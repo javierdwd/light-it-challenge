@@ -31,14 +31,14 @@ Set up a complete Next.js 15 frontend application with TypeScript, configured wi
 - [✅] Add lint and format scripts to `package.json`
 - [✅] Verify linting works across TypeScript and React files
 
-### [ ] Objective 3. Set Up HTTP Client & Data Management
+### [✅] Objective 3. Set Up HTTP Client & Data Management
 **Sub-tasks:**
-- [ ] Install Axios for HTTP requests
-- [ ] Install TanStack Query for API queries and caching
-- [ ] Create Axios instance with base configuration
-- [ ] Set up TanStack Query provider and client
-- [ ] Create `.env.example` file with API_URL configuration
-- [ ] Configure query client with appropriate defaults
+- [✅] Install Axios for HTTP requests
+- [✅] Install TanStack Query for API queries and caching
+- [✅] Create Axios instance with base configuration
+- [✅] Set up TanStack Query provider and client
+- [✅] Create `.env.example` file with API_URL configuration
+- [✅] Configure query client with appropriate defaults
 
 ### [ ] Objective 4. Configure Form Handling & Validation
 **Sub-tasks:**

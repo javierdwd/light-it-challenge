@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
+import { Providers } from '@/lib/providers';
 
 export const metadata: Metadata = {
-  title: "Light-It Challenge",
-  description: "Light-It Challenge",
+  title: 'Light-It Challenge',
+  description: 'Light-It Challenge',
 };
 
 export default function RootLayout({
@@ -13,10 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        {children}
+      <body className={`antialiased`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
