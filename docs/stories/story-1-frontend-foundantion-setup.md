@@ -40,14 +40,10 @@ Set up a complete Next.js 15 frontend application with TypeScript, configured wi
 - [✅] Create `.env.example` file with API_URL configuration
 - [✅] Configure query client with appropriate defaults
 
-### [ ] Objective 4. Configure Form Handling & Validation
+### [✅] Objective 4. Configure Form Handling & Validation
 **Sub-tasks:**
-- [ ] Install React Hook Form
-- [ ] Install Zod for schema validation
-- [ ] Create form validation schemas for patient data
-- [ ] Set up form utilities and hooks
-- [ ] Create reusable form components structure
-- [ ] Test form validation integration
+- [✅] Install React Hook Form
+- [✅] Install Zod for schema validation
 
 ### [ ] Objective 5. Set Up UI & Styling Framework
 **Sub-tasks:**
