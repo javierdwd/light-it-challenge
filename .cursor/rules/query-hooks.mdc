@@ -1,0 +1,50 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# React custom hooks to make API Requests
+
+# Context
+- This project uses custom hooks to handle server requests.
+We use AXIOS js to make the requests and wrap those call with implementations of React-Query (Docs in: https://tanstack.com/query/latest). 
+
+# Rules
+- When asked create a request hook you are going to create a custom hooks making use of the library @tanstack/react-query.
+- The main folder to place the new requests is {PROJECT_FOLDER}/frontend/src/queries/, if there is none other indication place them there.
+- This hooks make use of two of the main utilities from react-query.
+- - useQuery: Two make GET request.
+- - useMutation: For POST/PUT/DELETE requests.
+- The generated hook code MUST NOT contain any comments. 
+- By default, DO NOT include the `enabled` prop within the `useQuery` options. It should be controlled by the component using the hook, if needed.
+- The main hook function (e.g., `useGetSomething`, `useUpdateSomething`) MUST be the default export of the file.
+- Every query (Get, Post, etc) must be placed into a single file.
+
+# Additional information
+
+- The name of the requested file can give you an clue about the type of request.
+Names like:
+* useGetUsers or useGetEntities are GET request, therefore make use of useQuery.
+* useDeleteUser or useUpdateEntity or useCreateEntity are POST/DELETE/PUT requests therefore make use of useMutation.
+
+# Examples.
+
+Example usage of getQuery:
+```
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/libs/axios';
+
+const getEntities = async () => {
+    const { data } = await axiosInstance.get('/api/entities');
+    return data;
+};
+
+export const useGetEntities = (options = {}) => {
+    return useQuery({
+        queryKey: ['entities'],
+        queryFn: getEntities,
+        ...options
+    });
+};
+```
+

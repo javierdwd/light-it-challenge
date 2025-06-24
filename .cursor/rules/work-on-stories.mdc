@@ -1,0 +1,27 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+An story, or planning file, contains the description of new features to add or refactors to make in the codebase.
+The changes must be done following the objectives and sub-tasks.
+
+# Docs
+- You will read the project documentation (PRD and Features which are placed in the ./docs folder) before start working on new stories.
+- All story files are located in the `./docs/stories` folder.
+
+----
+
+This is the flow to work on stories:
+
+Working Flow:
+1) The flow start with the developer making a reference to the story file. If there is not reference yet, the agent will ask the developer to provide a reference to the story file they would like to work with.
+2) The agent is going to make a detailed review of the story.
+3) The agent won't make assumptions and will require the developer to provide more details if there is missing information.
+4) The agent will ask the developer to begin.
+5) When the give its authorization to begin, the agent will start working on the next uncompleted objective.
+6) When the objective is completed, the agent will run the neccesary tests or pass to the next step if no required.
+7) The the agent will ask the user to review the changes.
+8) If the user approves the changes the agent will mark the objective as completed on the story file (mark the  [ ] boxes as completed with the emoji ✅)
+9) The agent will run the command "npm run format" to apply the correct (prettier) format to the new generate code.
+10) If there are more objectives you will ask the user if should following with the next one.

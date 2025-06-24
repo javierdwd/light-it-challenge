@@ -1,0 +1,31 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Code Conventions:
+
+# General
+- When importing types from libraries, use the "type" reserved word to differenciate entities from type declaactions.
+- When importing from libraries that support named exports (e.g., React), use atomic imports instead of namespace imports.
+Apply this pattern to other libraries with named exports to improve code clarity and tree-shaking.
+    - Instead of:
+    ```
+    import * as React from "react";
+    ```
+    - Do:
+    ```
+    import { useState, useEffect } from "react";
+    ```
+- 
+
+# Front-End
+- React Components must use PascalCase for naming.
+- Use consts instead of functions, for example, “const toggle = () =>”. Also, define a type if possible.
+- Use descriptive variable and function/const names. Also, event functions should be named with a “handle” prefix, like “handleClick” for onClick and “handleKeyDown” for onKeyDown.
+- Use the useState function initializator instead of useEffect when an state does not requires to be updated after the first render.
+- Implement accessibility features on elements. For example, a tag should have a tabindex=“0”, aria-label, on:click, and on:keydown, and similar attributes.
+- Use early returns whenever possible to make the code more readable.
+- React custom Hooks must start with the "use" expression and use camelCase convention.
+- Query Hooks must follows the ./.cursor/rules/queries-hooks.mdc rules
+- Forms will be handle with React Hook Form library and Zod for validations.
