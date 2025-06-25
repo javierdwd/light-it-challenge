@@ -45,14 +45,14 @@ Set up a complete Next.js 15 frontend application with TypeScript, configured wi
 - [✅] Install React Hook Form
 - [✅] Install Zod for schema validation
 
-### [ ] Objective 5. Set Up UI & Styling Framework
+### [✅] Objective 5. Set Up UI & Styling Framework
 **Sub-tasks:**
-- [ ] Install Styled Components
-- [ ] Configure Styled Components with Next.js (SSR support)
-- [ ] Create theme provider and basic theme structure
-- [ ] Set up global styles
-- [ ] Create basic component library structure
-- [ ] Ensure styled-components work with TypeScript
+- [✅] Install Styled Components
+- [✅] Configure Styled Components with Next.js (SSR support)
+- [✅] Create theme provider and basic theme structure
+- [✅] Set up global styles
+- [✅] Create basic component library structure
+- [✅] Ensure styled-components work with TypeScript
 
 ### [ ] Objective 6. Create Project Structure & Architecture
 **Sub-tasks:**
