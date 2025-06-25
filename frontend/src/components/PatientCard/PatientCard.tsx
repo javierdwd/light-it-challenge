@@ -1,8 +1,7 @@
-import { Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
+import { Mail, Phone } from 'lucide-react';
 import type { User } from '@/types/users';
-
-import { Container, Header, EmailDataItem, PhoneDataItem, Collapsable } from './styles';
+import { Container, Header, DataContainer, DataItem, Collapsable, UserDocument } from './styles';
 
 import { theme } from '@/lib/theme';
 
@@ -17,18 +16,22 @@ export default function PatientCard({ user }: Props) {
         <Header>
           <h3>{user.name}</h3>
         </Header>
-        <EmailDataItem>
-          <Mail color={theme.colors.primary} size={18} />
-          <a href={`mailto:${user.email}`}>{user.email}</a>
-        </EmailDataItem>
-        <PhoneDataItem>
-          <Phone color={theme.colors.primary} size={18} />
-          <a href={`tel:${user.phone}`}>{user.phone}</a>
-        </PhoneDataItem>
+        <UserDocument>
+          <Image src={user.image} alt={user.name} width={600} height={400} />
+        </UserDocument>
       </div>
 
-      <Collapsable title="Patient ID">
-        <Image src={user.image} alt={user.name} width={600} height={400} />
+      <Collapsable title="More Info">
+        <DataContainer>
+          <DataItem>
+            <Mail color={theme.colors.primary} size={18} />
+            <a href={`mailto:${user.email}`}>{user.email}</a>
+          </DataItem>
+          <DataItem>
+            <Phone color={theme.colors.primary} size={18} />
+            <a href={`tel:${user.phone}`}>{user.phone}</a>
+          </DataItem>
+        </DataContainer>
       </Collapsable>
     </Container>
   );

@@ -20,6 +20,9 @@ export const GlobalStyles = createGlobalStyle`
     font-style: normal;
     font-size: 1rem;
   }
+  html {
+    background-color: ${({ theme }) => theme.colors.primaryLight};
+  }
   body {
     background: linear-gradient(
         to bottom,
@@ -28,9 +31,12 @@ export const GlobalStyles = createGlobalStyle`
         ${({ theme }) => theme.colors.secondaryLight}99
       );
     background-blend-mode: multiply;
-    padding: 0 5%;
     min-height: 100vh;
+  }
 
+  main {
+    padding: 0 5%;
+    
     @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
       padding: 0 10%;
     }
@@ -49,6 +55,7 @@ export const GlobalStyles = createGlobalStyle`
   img {
     display: inline-block;
     vertical-align: middle;
+    max-width: 100%;
   }
 
   a {

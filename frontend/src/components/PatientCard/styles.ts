@@ -7,7 +7,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   box-shadow: ${({ theme }) => theme.shadows.md};
-  padding: ${({ theme }) => theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.md};
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
@@ -19,6 +19,18 @@ export const Header = styled.header`
   }
 `;
 
+export const UserDocument = styled.div`
+  text-align: center;
+`;
+
+export const DataContainer = styled.div`
+  padding: ${({ theme }) => theme.spacing.md};
+  gap: ${({ theme }) => theme.spacing.md};
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.xs};
+`;
+
 export const DataItem = styled.p`
   display: flex;
   align-items: center;
@@ -27,21 +39,14 @@ export const DataItem = styled.p`
 
   a {
     color: ${({ theme }) => theme.colors.text.primary};
+    word-break: break-all;
+  }
+
+  svg {
+    flex-shrink: 0;
   }
 `;
 
-export const EmailDataItem = styled(DataItem)`
-  margin-top: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-`;
-
-export const PhoneDataItem = styled(DataItem)``;
-
-export const ImageContainer = styled.details`
-  margin-top: ${({ theme }) => theme.spacing.xl};
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-`;
-
 export const Collapsable = styled(BaseCollapsable)`
-  margin-top: ${({ theme }) => theme.spacing.xl};
+  margin-top: ${({ theme }) => theme.spacing.lg};
 `;
