@@ -12,7 +12,6 @@ RUN npm ci
 FROM base AS dev
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY package.json package-lock.json* ./
 COPY . .
 EXPOSE 3000
 CMD ["npm", "run", "dev"]
@@ -21,7 +20,6 @@ CMD ["npm", "run", "dev"]
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY package.json package-lock.json* ./
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm run build

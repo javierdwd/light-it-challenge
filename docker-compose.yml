@@ -11,5 +11,5 @@ services:
     env_file:
       - ./frontend/.env
     volumes:
-      - ./frontend:/app
-      - /app/node_modules
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
