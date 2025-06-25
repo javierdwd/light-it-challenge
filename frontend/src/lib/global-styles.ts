@@ -19,7 +19,12 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     font-style: normal;
     font-size: 1rem;
-    color: var(--foreground);
+    background-color: ${({ theme }) => theme.colors.primaryUltraLight};
+  }
+
+  img {
+    display: inline-block;
+    vertical-align: middle;
   }
 
   a {
