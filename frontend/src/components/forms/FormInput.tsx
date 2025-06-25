@@ -21,7 +21,7 @@ const Input = styled.input`
 `;
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   error?: string;
 }
 
