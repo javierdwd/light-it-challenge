@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   overflow: hidden;
   border-radius: ${({ theme }) => theme.borderRadius.sm};
-  border: 1px solid ${({ theme }) => theme.colors.primaryLight};
+  border: 2px solid ${({ theme }) => theme.colors.secondary};
 `;
 
 export const Content = styled.div`
@@ -22,15 +22,16 @@ export const Content = styled.div`
 export const ArrowIcon = styled(ArrowRight)`
   transition: transform 0.3s ease-in-out;
   margin-left: ${({ theme }) => theme.spacing.xs};
+  color: ${({ theme }) => theme.colors.gray['100']};
 `;
 
 export const ActionableTitle = styled.button`
   border: 0;
   display: flex;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.primaryLight};
+  background-color: ${({ theme }) => theme.colors.secondary};
   padding: ${({ theme }) => theme.spacing.sm};
-  color: ${({ theme }) => theme.colors.gray['800']};
+  color: ${({ theme }) => theme.colors.gray['100']};
   display: flex;
   cursor: pointer;
   font-size: ${({ theme }) => theme.typography.fontSize.lg};
