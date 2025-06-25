@@ -24,6 +24,7 @@ const PhoneNumberContainer = styled.div`
 `;
 
 export type OnPhoneChangeValue = {
+  dialCode: string;
   countryCode: string;
   phoneNumber: string;
 } | null;
@@ -31,7 +32,7 @@ export type OnPhoneChangeValue = {
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label: string;
   error?: string;
-  countryCodeValue?: string;
+  dialCodeValue?: string;
   value?: string;
   onPhoneChange?: (value: OnPhoneChangeValue) => void;
 }
@@ -49,38 +50,47 @@ const CountryPhoneOptions = countryPhoneCodes.map((country) => ({
 export default function FormInputPhone({
   label,
   error = '',
-  countryCodeValue = '+1',
+  dialCodeValue = '+1',
   value,
   onPhoneChange,
   ...props
 }: Props) {
-  const [_countryCode, setCountryCode] = useState<string>(countryCodeValue ?? '');
+  const [_dialCode, setDialCode] = useState<string>(dialCodeValue ?? '');
   const [_phoneNumber, setPhoneNumber] = useState<string>(value ?? '');
   const countryPhoneOptionValue = useMemo(() => {
-    return CountryPhoneOptions.find((option) => option.value === countryCodeValue);
-  }, [countryCodeValue]);
+    return CountryPhoneOptions.find((option) => option.value === dialCodeValue);
+  }, [dialCodeValue]);
 
   const handleCountryCodeChange = (option: CountryOption | null) => {
-    const newCountryCode = option?.value ?? '';
-    setCountryCode(newCountryCode);
+    const newDialCode = option?.value ?? '';
+    setDialCode(newDialCode);
 
-    if (!newCountryCode) {
+    if (!option || !newDialCode) {
       onPhoneChange?.(null);
     } else {
-      onPhoneChange?.({ countryCode: newCountryCode, phoneNumber: _phoneNumber });
+      onPhoneChange?.({
+        dialCode: newDialCode,
+        countryCode: option.code,
+        phoneNumber: _phoneNumber,
+      });
     }
   };
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPhoneNumber = e.target.value;
     const sanitizedPhoneNumber = newPhoneNumber.replace(/[^0-9\s-]/g, '');
+    const option = CountryPhoneOptions.find((option) => option.value === _dialCode);
 
     setPhoneNumber(sanitizedPhoneNumber);
 
-    if (!sanitizedPhoneNumber) {
+    if (!option || !sanitizedPhoneNumber) {
       onPhoneChange?.(null);
     } else {
-      onPhoneChange?.({ countryCode: _countryCode, phoneNumber: sanitizedPhoneNumber });
+      onPhoneChange?.({
+        countryCode: option.code,
+        dialCode: _dialCode,
+        phoneNumber: sanitizedPhoneNumber,
+      });
     }
   };
 
