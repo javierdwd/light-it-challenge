@@ -107,11 +107,12 @@ The purpose of this product is to provide a simple patient management system for
 1. Administrator accesses the application.
 2. Views the full list of registered patients.
 
-### Optional Journeys:
+### Optional Journeys
 - Edit patient.
 - Delete patient.
 - Image storage in S3.
 - Admin authentication/login.
+- Add pagination for patience profiles.
 
 ---
 
