@@ -8,25 +8,7 @@ import FormInputPhone, { type OnPhoneChangeValue } from '@/components/forms/Form
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 
 import { FormContainer } from './style';
-
-const patientFormSchema = z
-  .object({
-    name: z.string().min(1, 'Name is required'),
-    email: z
-      .string()
-      .min(1, 'Email is required')
-      .email('Please enter a valid email')
-      .refine((email) => email.endsWith('@gmail.com'), {
-        message: 'Email must be a valid Gmail account (@gmail.com)',
-      }),
-    dialCode: z.string().min(1, 'Dial code is required'),
-    countryCode: z.string().min(1, 'Country code is required'),
-    phoneNumber: z.string().min(1, 'Phone number is required'),
-  })
-  .refine((data) => data.dialCode && data.countryCode && data.phoneNumber, {
-    message: 'Please enter a valid phone number',
-    path: ['phoneNumber'],
-  });
+import { patientFormSchema } from './validation';
 
 type FormData = z.infer<typeof patientFormSchema>;
 
@@ -36,6 +18,7 @@ export default function PatientForm() {
     handleSubmit,
     setValue,
     formState: { errors },
+    watch,
   } = useForm<FormData>({
     resolver: zodResolver(patientFormSchema),
     defaultValues: {
@@ -48,7 +31,6 @@ export default function PatientForm() {
   });
 
   const handlePhoneChange = (value: OnPhoneChangeValue) => {
-    console.log('PhoneValue', value);
     if (value) {
       setValue('dialCode', value.dialCode);
       setValue('countryCode', value.countryCode);
@@ -63,7 +45,6 @@ export default function PatientForm() {
   const onSubmit = (data: FormData) => {
     console.log('Form data:', data);
   };
-  // console.log('errors', errors);
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -85,6 +66,8 @@ export default function PatientForm() {
       <FormInputPhone
         error={errors.phoneNumber?.message}
         label="Phone"
+        dialCodeValue={watch('dialCode')}
+        phoneNumberValue={watch('phoneNumber')}
         onPhoneChange={handlePhoneChange}
       />
 

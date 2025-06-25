@@ -29,11 +29,11 @@ export type OnPhoneChangeValue = {
   phoneNumber: string;
 } | null;
 
-interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   label: string;
   error?: string;
   dialCodeValue?: string;
-  value?: string;
+  phoneNumberValue?: string;
   onPhoneChange?: (value: OnPhoneChangeValue) => void;
 }
 
@@ -50,13 +50,13 @@ const CountryPhoneOptions = countryPhoneCodes.map((country) => ({
 export default function FormInputPhone({
   label,
   error = '',
-  dialCodeValue = '+1',
-  value,
+  dialCodeValue = CountryPhoneOptions[0].dial_code,
+  phoneNumberValue,
   onPhoneChange,
   ...props
 }: Props) {
   const [_dialCode, setDialCode] = useState<string>(dialCodeValue ?? '');
-  const [_phoneNumber, setPhoneNumber] = useState<string>(value ?? '');
+  const [_phoneNumber, setPhoneNumber] = useState<string>(phoneNumberValue ?? '');
   const countryPhoneOptionValue = useMemo(() => {
     return CountryPhoneOptions.find((option) => option.value === dialCodeValue);
   }, [dialCodeValue]);

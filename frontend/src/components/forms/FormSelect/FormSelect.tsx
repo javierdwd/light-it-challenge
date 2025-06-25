@@ -114,9 +114,11 @@ export default function FormSelect<OptionType extends Option>({
 
   useEffect(() => {
     if (!isOpen && !deferredSearchTerm) {
-      onChange?.(null);
+      if (value) {
+        setSearchTerm(value.label);
+      }
     }
-  }, [isOpen, deferredSearchTerm, onChange]);
+  }, [isOpen, deferredSearchTerm, onChange, value, setSearchTerm]);
 
   return (
     <SelectContainer ref={containerRef}>
