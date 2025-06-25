@@ -41,6 +41,7 @@ This document outlines the complete technology stack for the patient management 
 
 ### UI & Styling
 - **Component Styling**: Styled Components - https://styled-components.com/docs
+- **Lucide React**: Icons Pack - https://lucide.dev/guide/
 
 ---
 

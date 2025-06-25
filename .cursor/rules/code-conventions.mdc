@@ -29,3 +29,4 @@ Apply this pattern to other libraries with named exports to improve code clarity
 - React custom Hooks must start with the "use" expression and use camelCase convention.
 - Query Hooks must follows the ./.cursor/rules/queries-hooks.mdc rules
 - Forms will be handle with React Hook Form library and Zod for validations.
+- The Lucide React library will be used a the main set of icons.
