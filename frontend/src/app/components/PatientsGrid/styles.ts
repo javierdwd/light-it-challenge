@@ -6,8 +6,6 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: ${({ theme }) => theme.spacing.md};
-  max-width: 90%;
-  margin-left: 5%;
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing.md};
 
@@ -20,8 +18,6 @@ export const Container = styled.div`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
-    max-width: 80%;
-    width: 1600px;
-    margin-left: 10%;
+    max-width: 1600px;
   }
 `;

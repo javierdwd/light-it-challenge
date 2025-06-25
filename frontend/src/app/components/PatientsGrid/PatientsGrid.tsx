@@ -13,7 +13,9 @@ export default function PatientsGrid({ initialUsers }: Props) {
   return (
     <Container>
       {initialUsers.map((user) => (
-        <UserCard key={user.id} user={user} />
+        <div key={user.id}>
+          <UserCard user={user} />
+        </div>
       ))}
     </Container>
   );
