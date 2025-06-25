@@ -1,5 +1,6 @@
 'use client';
 
+import { ArrowRight } from 'lucide-react';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -18,6 +19,11 @@ export const Content = styled.div`
   transition: max-height 0.3s ease-in-out;
 `;
 
+export const ArrowIcon = styled(ArrowRight)`
+  transition: transform 0.3s ease-in-out;
+  margin-left: ${({ theme }) => theme.spacing.xs};
+`;
+
 export const ActionableTitle = styled.button`
   border: 0;
   display: flex;
@@ -28,9 +34,13 @@ export const ActionableTitle = styled.button`
   display: flex;
   cursor: pointer;
   font-size: ${({ theme }) => theme.typography.fontSize.lg};
+  justify-content: flex-end;
 
   &[aria-expanded='true'] + ${Content} {
     max-height: 100vh;
     height: min-content;
+  }
+  &[aria-expanded='false'] ${ArrowIcon} {
+    transform: rotate(90deg);
   }
 `;

@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, type ReactNode } from 'react';
-
-import { Container, ActionableTitle, Content } from './styles';
+import { Container, ActionableTitle, Content, ArrowIcon } from './styles';
 
 interface Props {
   children: ReactNode;
@@ -22,6 +21,7 @@ export default function Collapsable({ children, className, title, defaultOpen = 
     <Container className={className}>
       <ActionableTitle aria-expanded={isOpen} onClick={handleToggle}>
         {title}
+        <ArrowIcon size={21} />
       </ActionableTitle>
 
       <Content>{children}</Content>
