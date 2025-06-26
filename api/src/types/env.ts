@@ -17,4 +17,10 @@ export interface EnvironmentVariables {
   // API Configuration
   API_BASE_URL: string;
   CORS_ORIGIN: string;
+
+  // SMTP Configuration
+  SMTP_HOST: string;
+  SMTP_PORT: string;
+  SMTP_USER: string;
+  SMTP_PASSWORD: string;
 }

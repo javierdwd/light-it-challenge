@@ -77,7 +77,7 @@ app.listen(PORT, async () => {
     try {
       await runMigrations();
     } catch (error) {
-      console.error('Failed to run migrations on startup:', error);
+      console.error('❌ Failed to run migrations on startup:', error);
       process.exit(1);
     }
   }

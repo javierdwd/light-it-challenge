@@ -11,6 +11,8 @@ import { CreatePatientSchema } from '@/schemas/patient';
 import { TypeNumericId } from '@/db/utils';
 import { IMAGE_FILE_MIMETYPES } from '@/constants/files';
 
+import emailService from '@/services/EmailService';
+
 const router = Router();
 
 // GET /api/patients - Get all patients
@@ -62,7 +64,7 @@ router.post(
   async (req: Request, res: Response): Promise<void> => {
     try {
       let { name, email, dial_code, country_code, phone_number } = req.body;
-      console.log(req.file);
+
       const imageType = req.file?.mimetype;
       const imagePath = req.file?.filename;
 
@@ -115,6 +117,17 @@ router.post(
 
       const result = await db.insert(patients).values(patientData).returning();
       const newPatient = result[0];
+
+      emailService
+        .sendEmail({
+          to: email,
+          subject: 'Light-it Health Challenge',
+          html: `<h1>Welcome ${name} to Light-it Health Challenge!</h1>`,
+        })
+        .catch((error) => {
+          console.error(`Error sending email while creating patient for ${email}:`, error);
+        });
+
       res.status(201).json({
         message: 'Patient created successfully',
         patient: newPatient,

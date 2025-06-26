@@ -38,6 +38,7 @@ src/
 └── types/               # TypeScript type definitions
 └── uploads/             # User's files (images)
 └── schemas/             # TypeBox entities definition schemas
+└── services/            # Standalone services
 ```
 
 ## Features

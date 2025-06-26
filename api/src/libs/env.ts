@@ -24,6 +24,12 @@ export const env: EnvironmentVariables = {
   // API Configuration
   API_BASE_URL: process.env['API_BASE_URL'] || 'http://localhost:3001/api',
   CORS_ORIGIN: process.env['CORS_ORIGIN'] || 'http://localhost:3000',
+
+  // SMTP Configuration
+  SMTP_HOST: process.env['SMTP_HOST'] || 'smtp.gmail.com',
+  SMTP_PORT: process.env['SMTP_PORT'] || '587',
+  SMTP_USER: process.env['SMTP_USER'] || '',
+  SMTP_PASSWORD: process.env['SMTP_PASSWORD'] || '',
 };
 
 // Validate required environment variables
@@ -33,6 +39,10 @@ const requiredEnvVars: (keyof EnvironmentVariables)[] = [
   'DB_NAME',
   'DB_USER',
   'DB_PASSWORD',
+  'SMTP_HOST',
+  'SMTP_PORT',
+  'SMTP_USER',
+  'SMTP_PASSWORD',
 ];
 
 for (const envVar of requiredEnvVars) {
