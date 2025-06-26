@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug API",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/api/src",
+      "remoteRoot": "/app/src",
+      "skipFiles": ["<node_internals>/**"],
+      "restart": true,
+      "protocol": "inspector",
+      "timeout": 30000,
+      "stopOnEntry": false,
+      "sourceMaps": true
+    },
+    {
+      "name": "Debug API (Docker)",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/api/src",
+      "remoteRoot": "/app/src",
+      "skipFiles": ["<node_internals>/**"],
+      "restart": true,
+      "protocol": "inspector",
+      "timeout": 30000,
+      "stopOnEntry": false,
+      "sourceMaps": true
+    }
+  ]
+} 
