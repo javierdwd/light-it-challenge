@@ -12,15 +12,15 @@ Set up a complete Express.js backend API with TypeScript, configured with all th
 
 ## Objectives
 
-### [ ] Objective 1. Initialize Express.js Project with TypeScript
+### [✅] Objective 1. Initialize Express.js Project with TypeScript
 **Sub-tasks:**
-- [ ] Create new Express.js project in `./api` folder
-- [ ] Initialize TypeScript configuration with `tsconfig.json`
-- [ ] Set up proper folder structure with `./api/src` for source code
-- [ ] Install Express.js and @types/express
-- [ ] Create basic Express server with TypeScript
-- [ ] Configure package.json with development scripts (dev, build, start)
-- [ ] Ensure TypeScript compilation works with `npm run build`
+- [✅] Create new Express.js project in `./api` folder
+- [✅] Initialize TypeScript configuration with `tsconfig.json`
+- [✅] Set up proper folder structure with `./api/src` for source code
+- [✅] Install Express.js and @types/express
+- [✅] Create basic Express server with TypeScript
+- [✅] Configure package.json with development scripts (dev, build, start)
+- [✅] Ensure TypeScript compilation works with `npm run build`
 
 ### [ ] Objective 2. Configure Essential Middleware
 **Sub-tasks:**
