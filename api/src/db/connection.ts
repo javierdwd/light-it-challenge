@@ -1,4 +1,5 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
+import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { Pool } from 'pg';
 import env from '@/libs/env';
 
@@ -12,5 +13,16 @@ const pool = new Pool({
 });
 
 // Create Drizzle database instance
-
 export const db = drizzle(pool);
+
+// Migration function
+export const runMigrations = async (): Promise<void> => {
+  try {
+    console.log('🔄 Running database migrations...');
+    await migrate(db, { migrationsFolder: './src/db/migrations' });
+    console.log('✅ Database migrations completed successfully');
+  } catch (error) {
+    console.error('❌ Error running migrations:', error);
+    throw error;
+  }
+};

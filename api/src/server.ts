@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import { upload } from './middleware/upload';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { testConnection } from '@/db';
+import { runMigrations } from '@/db/connection';
 import patientsRouter from './routes/patients';
 import env from '@/libs/env';
 
@@ -70,4 +71,14 @@ app.listen(PORT, async () => {
   // Test database connection
   const dbConnected = await testConnection();
   console.log(`🗄️  Database: ${dbConnected ? '✅ Connected' : '❌ Disconnected'}`);
+
+  // Run database migrations
+  if (dbConnected) {
+    try {
+      await runMigrations();
+    } catch (error) {
+      console.error('Failed to run migrations on startup:', error);
+      process.exit(1);
+    }
+  }
 });
