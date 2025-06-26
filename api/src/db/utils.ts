@@ -1,12 +1,12 @@
 import { db } from './connection';
 import { patients } from './schemas';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 
 // Test database connection
 export const testConnection = async (): Promise<boolean> => {
   try {
-    // Simple query to test connection
-    await db.select().from(patients).limit(1);
+    // Simple query to test connection - just select 1
+    await db.execute(sql`SELECT 1`);
     return true;
   } catch (error) {
     console.error('Database connection test failed:', error);
