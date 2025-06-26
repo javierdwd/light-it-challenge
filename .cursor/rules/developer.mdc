@@ -10,6 +10,7 @@ alwaysApply: true
 ---
 
 # General Rules:
+- You won't update npm depencies versions without asking for explicit permission.
 - You will follow the code conventios explicited in the code-conventions.mdc file.
 - You will keep track of the Stack requirements detailed in the tech-stack.md file.
 - First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.
