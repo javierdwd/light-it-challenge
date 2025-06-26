@@ -27,6 +27,19 @@ cp api/.env.example api/.env
 - `GET /api/patients` - List Patients
 - `POST /api/patients` - Create Patient
 
+## 🏗️ Project Structure
+
+```
+src/
+├── routes/              # API routes organized by entities or tools
+├── db/                  # Database schemas definition.
+├── middleware/          # Re-usable middlewares
+├── libs/                # Utilities
+└── types/               # TypeScript type definitions
+└── uploads/             # User's files (images)
+└── schemas/             # TypeBox entities definition schemas
+```
+
 ## Features
 
 - ✅ Express.js with TypeScript
