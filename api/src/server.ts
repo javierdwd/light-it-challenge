@@ -3,16 +3,17 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import { upload } from '@/middleware/upload';
-import { validateRequest } from '@/middleware/validation';
-import { PatientSchema } from '@/schemas/patient';
+import { upload } from './middleware/upload';
+import { validateRequest } from './middleware/validation';
+import { PatientSchema } from './schemas/patient';
+import env from '@/libs/env';
 
 const app = express();
-const PORT = process.env['PORT'] || 3001;
+const PORT = env.PORT;
 
 // --- Middleware Chain ---
 app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
+app.use(cors({ origin: env.CORS_ORIGIN })); // Enable CORS with specific origin
 app.use(morgan('tiny')); // Logging
 app.use(bodyParser.json()); // Parse JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
@@ -61,5 +62,6 @@ app.use('/api', apiRouter);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
-  console.log(`📡 API available at http://localhost:${PORT}/api`);
+  console.log(`📡 API available at ${env.API_BASE_URL}`);
+  console.log(`🌍 Environment: ${env.NODE_ENV}`);
 });

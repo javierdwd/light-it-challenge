@@ -58,14 +58,14 @@ filename: (request, file, callback) => {
 - [✅] Implement validation error handling
 - [✅] Test validation with sample requests
 
-### [ ] Objective 5. Configure Environment Variables
+### [✅] Objective 5. Configure Environment Variables
 **Sub-tasks:**
-- [ ] Create `.env` file in `./api` folder
-- [ ] Define database credentials and connection strings
-- [ ] Set up API port and other configuration variables
-- [ ] Install dotenv for environment variable loading
-- [ ] Create `.env.example` template file
-- [ ] Configure TypeScript types for environment variables
+- [✅] Create `.env` file in `./api` folder
+- [✅] Define database credentials and connection strings
+- [✅] Set up API port and other configuration variables
+- [✅] Install dotenv for environment variable loading
+- [✅] Create `.env.example` template file
+- [✅] Configure TypeScript types for environment variables
 
 ### [ ] Objective 6. Set Up PostgreSQL Database Container
 **Sub-tasks:**
