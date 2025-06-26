@@ -1,14 +1,15 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import FormInput from '@/components/forms/FormInput';
 import FormInputPhone, { type OnPhoneChangeValue } from '@/components/forms/FormInputPhone';
+import FileUploader from '@/components/FileUploader';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 
 import { FormContainer } from './style';
-import { patientFormSchema } from './validation';
+import { patientFormSchema, ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from './validation';
 
 type FormData = z.infer<typeof patientFormSchema>;
 
@@ -17,6 +18,7 @@ export default function PatientForm() {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
     watch,
   } = useForm<FormData>({
@@ -27,6 +29,7 @@ export default function PatientForm() {
       dialCode: '+1',
       countryCode: '',
       phoneNumber: '',
+      image: undefined,
     },
   });
 
@@ -69,6 +72,21 @@ export default function PatientForm() {
         dialCodeValue={watch('dialCode')}
         phoneNumberValue={watch('phoneNumber')}
         onPhoneChange={handlePhoneChange}
+      />
+
+      <Controller
+        name="image"
+        control={control}
+        render={({ field: { onChange, value }, fieldState: { error } }) => (
+          <FileUploader
+            name="image"
+            onChange={onChange}
+            acceptedTypes={ACCEPTED_IMAGE_TYPES}
+            maxSize={MAX_FILE_SIZE}
+            value={value}
+            error={error?.message}
+          />
+        )}
       />
 
       <PrimaryButton type="submit">Create</PrimaryButton>

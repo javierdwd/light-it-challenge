@@ -116,12 +116,14 @@ export const UploadText = styled.div<{ $disabled: boolean }>`
 
 export const PreviewContainer = styled.div`
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.md};
   animation: ${fadeIn} 0.3s ease-in-out;
-  max-width: 100%;
 
   &:hover {
     transform: scale(1.02);

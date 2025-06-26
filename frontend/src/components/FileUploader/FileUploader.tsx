@@ -264,7 +264,9 @@ const FileUploader = ({
               <UploadText $disabled={disabled}>
                 <strong>Click to upload</strong> or drag and drop
                 <br />
-                <small>PNG, JPG, GIF up to {maxSize / (1024 * 1024)}MB</small>
+                <small>
+                  {acceptedTypesText} up to {maxSize / (1024 * 1024)}MB
+                </small>
               </UploadText>
             </>
           )}
