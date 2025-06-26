@@ -1,20 +1,21 @@
 import { Router, Request, Response } from 'express';
 import { upload } from '@/middleware/upload';
-import { getAllPatients, getPatientById, createPatient, updatePatient, deletePatient } from '@/db';
+import { db, patients } from '@/db';
+import { eq } from 'drizzle-orm';
 import { Type } from '@sinclair/typebox';
 
 import { validateRequest } from '@/middleware/validation';
-// import { PatientSchema, type PatientType } from '@/schemas/patient';
+import { TypeNumericId } from '@/db/utils';
 
 const router = Router();
 
 // GET /api/patients - Get all patients
 router.get('/', async (_req: Request, res: Response): Promise<void> => {
   try {
-    const patients = await getAllPatients();
+    const allPatients = await db.select().from(patients).orderBy(patients.createdAt);
 
     res.json({
-      data: patients,
+      data: allPatients,
     });
   } catch (error) {
     console.error('Error fetching patients:', error);
@@ -27,13 +28,14 @@ router.get(
   '/:id',
   validateRequest({
     params: Type.Object({
-      id: Type.Number(),
+      id: TypeNumericId,
     }),
   }),
   async (req: Request<{ id: string }>, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
-      const patient = await getPatientById(id);
+      const result = await db.select().from(patients).where(eq(patients.id, id));
+      const patient = result[0] || null;
       if (!patient) {
         res.status(404).json({ error: 'Patient not found' });
         return;
@@ -59,7 +61,8 @@ router.post('/', upload.single('image'), async (req: Request, res: Response): Pr
       ...(imagePath && { imagePath }), // Only include if imagePath exists
     };
 
-    const newPatient = await createPatient(patientData);
+    const result = await db.insert(patients).values(patientData).returning();
+    const newPatient = result[0];
     res.status(201).json({
       message: 'Patient created successfully',
       patient: newPatient,
@@ -75,7 +78,7 @@ router.put(
   '/:id',
   validateRequest({
     params: Type.Object({
-      id: Type.Number(),
+      id: TypeNumericId,
     }),
   }),
   upload.single('image'),
@@ -91,7 +94,12 @@ router.put(
         updateData.imagePath = imagePath;
       }
 
-      const updatedPatient = await updatePatient(id, updateData);
+      const result = await db
+        .update(patients)
+        .set({ ...updateData, updatedAt: new Date() })
+        .where(eq(patients.id, id))
+        .returning();
+      const updatedPatient = result[0] || null;
       if (!updatedPatient) {
         res.status(404).json({ error: 'Patient not found' });
         return;
@@ -113,13 +121,15 @@ router.delete(
   '/:id',
   validateRequest({
     params: Type.Object({
-      id: Type.Number(),
+      id: TypeNumericId,
     }),
   }),
   async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params['id']!);
-      const deletedPatient = await deletePatient(id);
+      const result = await db.delete(patients).where(eq(patients.id, id)).returning();
+      const deletedPatient = result[0] || null;
+
       if (!deletedPatient) {
         res.status(404).json({ error: 'Patient not found' });
         return;

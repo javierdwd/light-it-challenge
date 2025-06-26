@@ -5,11 +5,4 @@ export { db } from './connection';
 export { patients } from './schemas';
 
 // Database utilities
-export {
-  testConnection,
-  getAllPatients,
-  getPatientById,
-  createPatient,
-  updatePatient,
-  deletePatient,
-} from './utils';
+export { testConnection } from './utils';
