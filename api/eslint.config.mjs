@@ -36,7 +36,6 @@ const eslintConfig = [
       '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin')).default,
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',

@@ -4,9 +4,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import { upload } from './middleware/upload';
-import { validateRequest } from './middleware/validation';
-import { PatientSchema } from './schemas/patient';
+import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { testConnection } from '@/db';
+import patientsRouter from './routes/patients';
 import env from '@/libs/env';
 
 const app = express();
@@ -29,10 +29,8 @@ apiRouter.get('/', (_req, res) => {
 
 // Health check endpoint
 apiRouter.get('/healthcheck', async (_req, res) => {
-  const dbConnected = await testConnection();
   res.json({
     status: 'ok',
-    database: dbConnected ? 'connected' : 'disconnected',
   });
 });
 
@@ -54,16 +52,15 @@ apiRouter.post('/upload', upload.single('image'), (req, res): void => {
   });
 });
 
-// Test validation route
-apiRouter.post('/patients', validateRequest(PatientSchema), (req, res): void => {
-  res.json({
-    message: 'Patient data validation passed!',
-    data: req.body,
-  });
-});
+// Mount patients routes
+apiRouter.use('/patients', patientsRouter);
 
 // Mount API router at /api
 app.use('/api', apiRouter);
+
+// Error handling middleware (must be last)
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 app.listen(PORT, async () => {
   console.log(`🚀 Server is running on port ${PORT}`);

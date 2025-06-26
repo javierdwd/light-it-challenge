@@ -1,30 +1,82 @@
-import { type AnySchema } from 'ajv';
 import { Request, Response, NextFunction } from 'express';
+import { TSchema } from '@sinclair/typebox';
+import { Value } from '@sinclair/typebox/value';
 
-import ajv from '@/libs/ajv';
+// Define the validation schema interface
+interface ValidationSchema {
+  params?: TSchema;
+  body?: TSchema;
+  query?: TSchema;
+}
 
-// Validation middleware factory
-export const validateRequest = (schema: unknown) => {
-  const validate = ajv.compile(schema as AnySchema);
-
+// Main validation middleware function
+export function validateRequest(schema: ValidationSchema) {
   return (req: Request, res: Response, next: NextFunction): void => {
-    const isValid = validate(req.body);
+    const errors: any[] = [];
 
-    if (!isValid) {
-      const errors =
-        validate.errors?.map((error) => ({
-          field: error.instancePath || 'body',
-          message: error.message,
-          value: error.data,
-        })) || [];
+    // Validate params
+    if (schema.params) {
+      if (!Value.Check(schema.params, req.params)) {
+        const paramErrors = [...Value.Errors(schema.params, req.params)];
+        errors.push({
+          location: 'params',
+          errors: paramErrors.map((err) => ({
+            path: err.path,
+            message: err.message,
+            value: err.value,
+          })),
+        });
+      } else {
+        req.params = Value.Decode(schema.params, req.params);
+      }
+    }
 
+    // Validate body
+    if (schema.body) {
+      if (!Value.Check(schema.body, req.body)) {
+        const bodyErrors = [...Value.Errors(schema.body, req.body)];
+        errors.push({
+          location: 'body',
+          errors: bodyErrors.map((err) => ({
+            path: err.path,
+            message: err.message,
+            value: err.value,
+          })),
+        });
+      } else {
+        req.body = Value.Decode(schema.body, req.body);
+      }
+    }
+
+    // Validate query
+    if (schema.query) {
+      if (!Value.Check(schema.query, req.query)) {
+        const queryErrors = [...Value.Errors(schema.query, req.query)];
+        errors.push({
+          location: 'query',
+          errors: queryErrors.map((err) => ({
+            path: err.path,
+            message: err.message,
+            value: err.value,
+          })),
+        });
+      } else {
+        req.query = Value.Decode(schema.query, req.query);
+      }
+    }
+
+    // If there are validation errors, return 422 immediately
+    console.log('errors', errors);
+    if (errors.length > 0) {
       res.status(422).json({
-        error: 'Validation failed',
-        details: errors,
+        success: false,
+        message: 'Validation failed',
+        errors: errors,
       });
       return;
     }
 
+    // If all validations pass, continue to next middleware
     next();
   };
-};
+}
