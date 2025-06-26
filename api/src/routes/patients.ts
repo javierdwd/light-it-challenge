@@ -68,7 +68,7 @@ router.post(
 
       if (existingPatient.length > 0) {
         res.status(422).json({
-          message: 'Email already exists',
+          message: 'The email is already in use',
         });
       }
 
