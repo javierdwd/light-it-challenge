@@ -5,7 +5,7 @@ export const patients = pgTable('patients', {
   name: text('name').notNull(),
   email: text('email').unique().notNull(),
   phone: jsonb('phone').notNull(),
-  imagePath: text('image_path'),
-  createdAt: timestamp('created_at').defaultNow(),
+  image_path: text('image_path'),
+  created_at: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 });
