@@ -9,6 +9,7 @@ import parsePhoneNumber from 'libphonenumber-js';
 import { validateRequest } from '@/middleware/validation';
 import { CreatePatientSchema } from '@/schemas/patient';
 import { TypeNumericId } from '@/db/utils';
+import { IMAGE_FILE_MIMETYPES } from '@/constants/files';
 
 const router = Router();
 
@@ -61,6 +62,8 @@ router.post(
   async (req: Request, res: Response): Promise<void> => {
     try {
       let { name, email, dial_code, country_code, phone_number } = req.body;
+      console.log(req.file);
+      const imageType = req.file?.mimetype;
       const imagePath = req.file?.filename;
 
       // Does the email already exist?
@@ -76,6 +79,14 @@ router.post(
       if (!imagePath) {
         res.status(422).json({
           message: 'Image is required',
+        });
+        return;
+      }
+
+      // Does the image type is valid?
+      if (!imageType || !IMAGE_FILE_MIMETYPES.includes(imageType)) {
+        res.status(422).json({
+          message: 'Please provide a valid image file. Only JPG files are allowed.',
         });
         return;
       }
