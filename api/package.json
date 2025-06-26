@@ -19,8 +19,11 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@sinclair/typebox": "^0.34.37",
     "@types/express": "^5.0.0",
     "@types/node": "^22.0.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.0.0",
@@ -33,6 +36,7 @@
     "typescript": "^5.0.0"
   },
   "devDependencies": {
+    "@types/ajv": "^0.0.5",
     "@types/body-parser": "^1.19.6",
     "@types/cors": "^2.8.19",
     "@types/helmet": "^0.0.48",

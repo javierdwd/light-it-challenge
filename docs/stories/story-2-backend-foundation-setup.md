@@ -49,14 +49,14 @@ filename: (request, file, callback) => {
 - [✅] Create uploads directory structure
 - [✅] Test file upload functionality
 
-### [ ] Objective 4. Configure Request Validation
+### [✅] Objective 4. Configure Request Validation
 **Sub-tasks:**
-- [ ] Install TypeBox for schema definition
-- [ ] Install AJV for JSON schema validation
-- [ ] Create validation middleware using TypeBox + AJV
-- [ ] Define patient data validation schemas
-- [ ] Implement validation error handling
-- [ ] Test validation with sample requests
+- [✅] Install TypeBox for schema definition
+- [✅] Install AJV for JSON schema validation
+- [✅] Create validation middleware using TypeBox + AJV
+- [✅] Define patient data validation schemas
+- [✅] Implement validation error handling
+- [✅] Test validation with sample requests
 
 ### [ ] Objective 5. Configure Environment Variables
 **Sub-tasks:**
