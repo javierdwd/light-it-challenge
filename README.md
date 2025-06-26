@@ -5,7 +5,7 @@
 ## Project (DB)
 ```bash
 cp .env.example .env
-# Edit api/.env with your configuration
+# Edit ROOT_FOLDER/.env with your configuration
 ```
 
 ## Api
