@@ -1,10 +1,12 @@
+import { Request } from 'express';
 import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
 import crypto from 'crypto';
-import { Request } from 'express';
 import sanitize from 'sanitize-filename';
 
 const uploadDir = path.resolve(__dirname, '../../uploads');
+
+import { type MulterFile } from '@/types/Multer';
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
@@ -19,11 +21,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const fileFilter = (
-  _req: Request,
-  file: Express.Multer.File,
-  cb: FileFilterCallback
-) => {
+const fileFilter = (_req: Request, file: MulterFile, cb: FileFilterCallback) => {
   // Accept images only
   if (!file.mimetype.startsWith('image/')) {
     return cb(new Error('Only image files are allowed!'));
@@ -35,4 +33,4 @@ export const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter,
-}); 
+});

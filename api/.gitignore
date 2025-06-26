@@ -1,2 +1,7 @@
 dist/
-node_modules/ 
+node_modules/
+.env
+.env.*
+*.log
+uploads/*
+!uploads/.gitkeep 
