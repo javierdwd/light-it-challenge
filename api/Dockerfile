@@ -25,7 +25,7 @@ COPY . .
 EXPOSE 3001 9229
 
 # Run in development mode with debug enabled
-CMD ["npm", "run", "dev:debug"]
+CMD ["npm", "run", "dev"]
 
 # Build the application
 FROM base AS builder
