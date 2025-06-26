@@ -2,7 +2,10 @@ import { z } from 'zod';
 
 export const patientFormSchema = z
   .object({
-    name: z.string().min(1, 'Name is required'),
+    name: z
+      .string()
+      .min(1, 'Name is required')
+      .regex(/^[a-zA-Z\s]+$/, 'Name can only contain letters and spaces'),
     email: z
       .string()
       .min(1, 'Email is required')
