@@ -1,14 +1,20 @@
-import js from '@eslint/js';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import tsparser from '@typescript-eslint/parser';
-import prettier from 'eslint-plugin-prettier';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
 
-export default [
-  js.configs.recommended,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends('eslint:recommended'),
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: tsparser,
+      parser: await import('@typescript-eslint/parser'),
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
@@ -27,16 +33,13 @@ export default [
       },
     },
     plugins: {
-      '@typescript-eslint': tseslint,
-      prettier: prettier,
+      '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin')).default,
     },
     rules: {
-      ...tseslint.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      'prettier/prettier': 'error',
       'no-debugger': 'error',
     },
   },
@@ -62,3 +65,5 @@ export default [
     ignores: ['node_modules/', 'dist/', 'uploads/', '*.log', '.env', '.env.*', 'package-lock.json'],
   },
 ];
+
+export default eslintConfig;

@@ -16,8 +16,6 @@ export const env: EnvironmentVariables = {
   DB_NAME: process.env['DB_NAME'] || '',
   DB_USER: process.env['DB_USER'] || '',
   DB_PASSWORD: process.env['DB_PASSWORD'] || '',
-  DB_URL:
-    process.env['DB_URL'] || 'postgresql://postgres:postgres@localhost:5432/patient_management',
 
   // File Upload Configuration
   UPLOAD_DIR: process.env['UPLOAD_DIR'] || './uploads',

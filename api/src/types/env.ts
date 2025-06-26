@@ -9,7 +9,6 @@ export interface EnvironmentVariables {
   DB_NAME: string;
   DB_USER: string;
   DB_PASSWORD: string;
-  DB_URL: string;
 
   // File Upload Configuration
   UPLOAD_DIR: string;
