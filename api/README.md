@@ -32,7 +32,7 @@ cp api/.env.example api/.env
 ```
 src/
 ├── routes/              # API routes organized by entities or tools
-├── db/                  # Database schemas definition.
+├── db/                  # Database schema definitions and migrations
 ├── middleware/          # Re-usable middlewares
 ├── libs/                # Utilities
 └── types/               # TypeScript type definitions

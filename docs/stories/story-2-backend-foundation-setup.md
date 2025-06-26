@@ -76,22 +76,21 @@ filename: (request, file, callback) => {
 - [✅] Test database container starts successfully
 - [✅] Verify database accessibility from host
 
-### [ ] Objective 7. Set Up Database Integration
+### [✅] Objective 7. Set Up Database Integration
 **Sub-tasks:**
-- [ ] Install Drizzle ORM and PostgreSQL driver
-- [ ] Create database connection configuration using .env variables
-- [ ] Define patient table schema using Drizzle
-- [ ] Set up database migration system
-- [ ] Create database utility functions
-- [ ] Test database connection and basic operations
+- [✅] Install Drizzle ORM and PostgreSQL driver
+- [✅] Create database connection configuration using .env variables
+- [✅] Define patient table schema using Drizzle
+- [✅] Set up database migration system
+- [✅] Create database utility functions
+- [✅] Test database connection and basic operations
 
 ### [ ] Objective 8. Create Basic API Routes
 **Sub-tasks:**
-- [ ] Create GET `/status` endpoint returning `{ status: "ok" }`
 - [ ] Set up route structure and organization
-- [ ] Create patient routes placeholder (GET, POST)
+- [ ] Create patients route (api/src/routes/patiants.ts) placeholder (GET, POST)
 - [ ] Implement proper error handling middleware
-- [ ] Add request/response logging
+- [ ] Add request/response logging (morgan)
 - [ ] Test all endpoints manually
 
 ### [ ] Objective 9. Configure Docker Environment

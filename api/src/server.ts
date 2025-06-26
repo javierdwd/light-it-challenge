@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import { upload } from './middleware/upload';
 import { validateRequest } from './middleware/validation';
 import { PatientSchema } from './schemas/patient';
+import { testConnection } from '@/db';
 import env from '@/libs/env';
 
 const app = express();
@@ -27,8 +28,12 @@ apiRouter.get('/', (_req, res) => {
 });
 
 // Health check endpoint
-apiRouter.get('/healthcheck', (_req, res) => {
-  res.json({ status: 'ok' });
+apiRouter.get('/healthcheck', async (_req, res) => {
+  const dbConnected = await testConnection();
+  res.json({
+    status: 'ok',
+    database: dbConnected ? 'connected' : 'disconnected',
+  });
 });
 
 // File upload route
@@ -60,8 +65,12 @@ apiRouter.post('/patients', validateRequest(PatientSchema), (req, res): void => 
 // Mount API router at /api
 app.use('/api', apiRouter);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 Server is running on port ${PORT}`);
   console.log(`📡 API available at ${env.API_BASE_URL}`);
   console.log(`🌍 Environment: ${env.NODE_ENV}`);
+
+  // Test database connection
+  const dbConnected = await testConnection();
+  console.log(`🗄️  Database: ${dbConnected ? '✅ Connected' : '❌ Disconnected'}`);
 });
