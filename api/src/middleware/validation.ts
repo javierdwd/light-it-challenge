@@ -2,7 +2,7 @@
 import { type AnySchema } from 'ajv';
 import { Request, Response, NextFunction } from 'express';
 
-import ajv from '../libs/ajv';
+import ajv from '@/libs/ajv';
 
 
 // Validation middleware factory

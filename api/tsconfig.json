@@ -24,7 +24,10 @@
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "allowUnusedLabels": false,
-    "allowUnreachableCode": false
+    "allowUnreachableCode": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "src/**/*"

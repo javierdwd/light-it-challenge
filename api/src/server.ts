@@ -3,9 +3,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import { upload } from './middleware/upload';
-import { validateRequest } from './middleware/validation';
-import { PatientSchema } from './schemas/patient';
+import { upload } from '@/middleware/upload';
+import { validateRequest } from '@/middleware/validation';
+import { PatientSchema } from '@/schemas/patient';
 
 const app = express();
 const PORT = process.env['PORT'] || 3001;
