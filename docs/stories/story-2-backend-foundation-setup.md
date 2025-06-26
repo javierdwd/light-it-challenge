@@ -22,14 +22,14 @@ Set up a complete Express.js backend API with TypeScript, configured with all th
 - [✅] Configure package.json with development scripts (dev, build, start)
 - [✅] Ensure TypeScript compilation works with `npm run build`
 
-### [ ] Objective 2. Configure Essential Middleware
+### [✅] Objective 2. Configure Essential Middleware
 **Sub-tasks:**
-- [ ] Install and configure CORS middleware for cross-origin requests
-- [ ] Install and configure Body-Parser for request parsing
-- [ ] Install and configure Helmet for security headers
-- [ ] Install and configure Morgan for request logging (tiny format)
-- [ ] Set up middleware chain in proper order
-- [ ] Test middleware functionality with basic routes
+- [✅] Install and configure CORS middleware for cross-origin requests
+- [✅] Install and configure Body-Parser for request parsing
+- [✅] Install and configure Helmet for security headers
+- [✅] Install and configure Morgan for request logging (tiny format)
+- [✅] Set up middleware chain in proper order
+- [✅] Test middleware functionality with basic routes
 
 ### [ ] Objective 3. Set Up File Upload Handling
 **Sub-tasks:**
