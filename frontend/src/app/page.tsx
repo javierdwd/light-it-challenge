@@ -1,11 +1,12 @@
 import users from '@/constants/users';
+import PatientsHeader from '@/components/PatientsHeader';
 
 import PatientsGrid from './components/PatientsGrid';
 
 export default function Home() {
   return (
     <main>
-      <h1>Patients</h1>
+      <PatientsHeader />
 
       <PatientsGrid initialUsers={users} />
     </main>
