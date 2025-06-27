@@ -21,13 +21,13 @@ Create a complete Modal component system that includes a main Modal component, M
 - ✅ Set up TypeScript interfaces for Modal props and ref methods
 - ✅ Create simple Modal that renders children (no state management yet)
 
-### [ ] Objective 2. Implement Basic Modal State (Rendering Control)
+### ✅ Objective 2. Implement Basic Modal State (Rendering Control)
 **Sub-tasks:**
-- [ ] Add `isRendered` state to Modal component
-- [ ] Implement early return logic when `isRendered` is false
-- [ ] Add basic `open()` method using useImperativeHandle that sets isRendered to true
-- [ ] Test that Modal can be opened programmatically
-- [ ] Ensure Modal renders its children when opened
+- ✅ Add `isRendered` state to Modal component
+- ✅ Implement early return logic when `isRendered` is false
+- ✅ Add basic `open()` method using useImperativeHandle that sets isRendered to true
+- ✅ Test that Modal can be opened programmatically
+- ✅ Ensure Modal renders its children when opened
 
 ### [ ] Objective 3. Add Visibility State and Close Functionality
 **Sub-tasks:**

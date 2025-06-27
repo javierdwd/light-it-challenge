@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useImperativeHandle, type ReactNode } from 'react';
+import { forwardRef, useImperativeHandle, useState, type ReactNode } from 'react';
 import { Backdrop, Container } from './styles';
 
 export interface ModalProps {
@@ -14,10 +14,11 @@ export interface ModalRef {
 }
 
 const Modal = forwardRef<ModalRef, ModalProps>(({ children, className }, ref) => {
+  const [isRendered, setIsRendered] = useState(false);
+
   useImperativeHandle(ref, () => ({
     open: () => {
-      // Will be implemented in next objective
-      console.log('Modal open method called');
+      setIsRendered(true);
     },
     close: () => {
       // Will be implemented in next objective
@@ -25,10 +26,13 @@ const Modal = forwardRef<ModalRef, ModalProps>(({ children, className }, ref) =>
     },
   }));
 
-  // For now, just render children without state management
-  // This will be enhanced in the next objectives
+  // Early return when modal should not be rendered
+  if (!isRendered) {
+    return null;
+  }
+
   return (
-    <Backdrop className={className}>
+    <Backdrop className={className} data-testid="modal-backdrop">
       <Container>{children}</Container>
     </Backdrop>
   );
