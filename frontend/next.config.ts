@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
         port: '3001',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'api',
+        port: '3001',
+        pathname: '/**',
+      },
     ],
   },
 };
