@@ -1,20 +1,20 @@
 import React from 'react';
-import type { User } from '@/types/users';
+import type { Patient } from '@/types/patients';
 
-import UserCard from '@/components/PatientCard';
+import PatientCard from '@/components/PatientCard';
 
 import { Container } from './styles';
 
 interface Props {
-  initialUsers: User[];
+  initialPatients: Patient[];
 }
 
-export default function PatientsGrid({ initialUsers }: Props) {
+export default function PatientsGrid({ initialPatients }: Props) {
   return (
     <Container>
-      {initialUsers.map((user) => (
-        <div key={user.id}>
-          <UserCard user={user} />
+      {initialPatients.map((patient) => (
+        <div key={patient.id}>
+          <PatientCard patient={patient} />
         </div>
       ))}
     </Container>

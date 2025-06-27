@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
+import path from 'path';
 import { upload } from './middleware/upload';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { testConnection } from '@/db';
@@ -19,6 +20,9 @@ app.use(cors({ origin: env.CORS_ORIGIN })); // Enable CORS with specific origin
 app.use(morgan('tiny')); // Logging
 app.use(bodyParser.json()); // Parse JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+// Serve static files from uploads directory
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 // Create API router
 const apiRouter = express.Router();

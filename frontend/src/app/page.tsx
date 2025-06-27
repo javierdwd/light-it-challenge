@@ -1,14 +1,18 @@
-import users from '@/constants/users';
+import type { Patient } from '@/types/patients';
 import PatientsHeader from '@/components/PatientsHeader';
-
 import PatientsGrid from './components/PatientsGrid';
 
-export default function Home() {
+import axiosInstance from '@/lib/axios';
+
+export default async function Home() {
+  const response = await axiosInstance.get('/patients');
+
+  const patients: Patient[] = response.data.data;
+
   return (
     <main>
       <PatientsHeader />
-
-      <PatientsGrid initialUsers={users} />
+      <PatientsGrid initialPatients={patients} />
     </main>
   );
 }

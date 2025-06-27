@@ -1,8 +1,8 @@
 'use client';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 import BaseCollapsable from '../Collapsable';
-
-import styled from 'styled-components';
 
 export const Container = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.lg};
@@ -21,6 +21,10 @@ export const Header = styled.header`
 
 export const UserDocument = styled.div`
   text-align: center;
+`;
+export const UserDocumentImage = styled(Image)`
+  object-fit: cover;
+  aspect-ratio: 600/400;
 `;
 
 export const DataContainer = styled.div`
