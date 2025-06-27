@@ -83,7 +83,6 @@ class EmailService {
         this.createTimeoutPromise(30_000),
       ])) as NodeMailerResult;
 
-      // IMPROVEMENT 8: Structured logging
       this.logEmailSuccess(info, mailOptions);
 
       return {
