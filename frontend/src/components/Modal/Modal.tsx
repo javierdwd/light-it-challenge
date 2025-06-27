@@ -22,9 +22,7 @@ const Modal = forwardRef<ModalRef, ModalProps>(({ children, className }, ref) =>
       setIsRendered(true);
       // Use requestAnimationFrame to ensure DOM is rendered before animation
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setIsOpen(true);
-        });
+        setIsOpen(true);
       });
     },
     close: () => {
