@@ -31,7 +31,7 @@ export const patientFormSchema = z
     dialCode: z.string().min(1, 'Dial code is required'),
     countryCode: z.string().min(1, 'Country code is required'),
     phoneNumber: z.string().min(1, 'Phone number is required'),
-    image: fileSchema, // Mandatory image field
+    image: fileSchema,
   })
   .refine((data) => data.dialCode && data.countryCode && data.phoneNumber, {
     message: 'Please enter a valid phone number',

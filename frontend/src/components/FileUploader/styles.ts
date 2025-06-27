@@ -122,8 +122,8 @@ export const PreviewContainer = styled.div`
   width: 100%;
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   overflow: hidden;
-  box-shadow: ${({ theme }) => theme.shadows.md};
   animation: ${fadeIn} 0.3s ease-in-out;
+  padding: ${({ theme }) => theme.spacing.md};
 
   &:hover {
     transform: scale(1.02);

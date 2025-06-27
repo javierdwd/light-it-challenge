@@ -74,6 +74,7 @@ router.post(
       if (existingPatient.length > 0) {
         res.status(422).json({
           message: 'The email is already in use',
+          errorCode: 'EMAIL_ALREADY_IN_USE',
         });
       }
 
@@ -81,6 +82,7 @@ router.post(
       if (!imagePath) {
         res.status(422).json({
           message: 'Image is required',
+          errorCode: 'IMAGE_REQUIRED',
         });
         return;
       }
@@ -89,6 +91,7 @@ router.post(
       if (!imageType || !IMAGE_FILE_MIMETYPES.includes(imageType)) {
         res.status(422).json({
           message: 'Please provide a valid image file. Only JPG files are allowed.',
+          errorCode: 'IMAGE_INVALID_TYPE',
         });
         return;
       }
@@ -100,6 +103,7 @@ router.post(
       if (!parsedPhoneNumber?.isValid()) {
         res.status(422).json({
           message: 'Please, provide a valid phone number',
+          errorCode: 'PHONE_NUMBER_INVALID',
         });
         return;
       }
@@ -149,6 +153,7 @@ router.put(
     }),
   }),
   async (req: Request, res: Response): Promise<void> => {
+    // TODO: Implement update patient (this is not implemented yet)
     try {
       const id = parseInt(req.params['id']!);
 
@@ -191,6 +196,7 @@ router.delete(
     }),
   }),
   async (req: Request, res: Response): Promise<void> => {
+    // TODO: Implement delete patient (this is not implemented yet)
     try {
       const id = parseInt(req.params['id']!);
       const result = await db.delete(patients).where(eq(patients.id, id)).returning();
