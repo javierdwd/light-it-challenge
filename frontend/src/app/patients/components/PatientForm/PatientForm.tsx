@@ -38,7 +38,7 @@ export default function PatientForm() {
       name: '',
       email: '',
       dialCode: '+1',
-      countryCode: '',
+      countryCode: 'US',
       phoneNumber: '',
       image: undefined,
     },

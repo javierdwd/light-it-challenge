@@ -120,6 +120,12 @@ export default function FormSelect<OptionType extends Option>({
     }
   }, [isOpen, deferredSearchTerm, onChange, value, setSearchTerm]);
 
+  useEffect(() => {
+    if (value) {
+      setSearchTerm(value.label);
+    }
+  }, [value]);
+
   return (
     <SelectContainer ref={containerRef}>
       {label && <FormLabel htmlFor={props.id}>{label}</FormLabel>}

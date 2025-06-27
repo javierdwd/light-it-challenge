@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { styled } from 'styled-components';
 import { type InputHTMLAttributes } from 'react';
 
@@ -51,19 +51,16 @@ export default function FormInputPhone({
   label,
   error = '',
   dialCodeValue = CountryPhoneOptions[0].dial_code,
-  phoneNumberValue,
+  phoneNumberValue = '',
   onPhoneChange,
   ...props
 }: Props) {
-  const [_dialCode, setDialCode] = useState<string>(dialCodeValue ?? '');
-  const [_phoneNumber, setPhoneNumber] = useState<string>(phoneNumberValue ?? '');
   const countryPhoneOptionValue = useMemo(() => {
     return CountryPhoneOptions.find((option) => option.value === dialCodeValue);
   }, [dialCodeValue]);
 
   const handleCountryCodeChange = (option: CountryOption | null) => {
     const newDialCode = option?.value ?? '';
-    setDialCode(newDialCode);
 
     if (!option || !newDialCode) {
       onPhoneChange?.(null);
@@ -71,7 +68,7 @@ export default function FormInputPhone({
       onPhoneChange?.({
         dialCode: newDialCode,
         countryCode: option.code,
-        phoneNumber: _phoneNumber,
+        phoneNumber: phoneNumberValue,
       });
     }
   };
@@ -79,16 +76,20 @@ export default function FormInputPhone({
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPhoneNumber = e.target.value;
     const sanitizedPhoneNumber = newPhoneNumber.replace(/[^0-9\s-]/g, '');
-    const option = CountryPhoneOptions.find((option) => option.value === _dialCode);
-
-    setPhoneNumber(sanitizedPhoneNumber);
+    const option = CountryPhoneOptions.find((option) => option.value === dialCodeValue);
 
     if (!option || !sanitizedPhoneNumber) {
-      onPhoneChange?.(null);
+      const countryCode = option?.code ?? CountryPhoneOptions[0].code;
+      const dialCode = option?.value ?? CountryPhoneOptions[0].value;
+      onPhoneChange?.({
+        phoneNumber: '',
+        countryCode,
+        dialCode,
+      });
     } else {
       onPhoneChange?.({
         countryCode: option.code,
-        dialCode: _dialCode,
+        dialCode: dialCodeValue,
         phoneNumber: sanitizedPhoneNumber,
       });
     }
@@ -113,7 +114,7 @@ export default function FormInputPhone({
         <PhoneNumberContainer>
           <FormInput
             {...props}
-            value={_phoneNumber}
+            value={phoneNumberValue}
             onChange={handlePhoneNumberChange}
             type="tel"
           />
