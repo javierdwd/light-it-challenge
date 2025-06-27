@@ -20,8 +20,12 @@ const Modal = forwardRef<ModalRef, ModalProps>(({ children, className }, ref) =>
   useImperativeHandle(ref, () => ({
     open: () => {
       setIsRendered(true);
-      // Set isOpen to true after rendering to trigger animations
-      setTimeout(() => setIsOpen(true), 0);
+      // Use requestAnimationFrame to ensure DOM is rendered before animation
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsOpen(true);
+        });
+      });
     },
     close: () => {
       // First set isOpen to false to trigger exit animation
