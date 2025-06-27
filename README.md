@@ -24,3 +24,13 @@ cp frontend/.env.example frontend/.env
 ```bash
 docker compose up
 ```
+
+## Note:
+To remove linting errors due to missing dependencies run
+```bash
+cd api/ && npm i
+```
+
+```bash
+cd frontend/ && npm i
+```
