@@ -22,7 +22,7 @@ A Next.js 15 frontend application for managing patient records in a health clini
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/javierdwd/light-it-challenge
    cd light-it-challenge
    ```
 
