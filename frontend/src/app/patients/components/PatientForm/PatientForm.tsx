@@ -7,6 +7,7 @@ import FormInput from '@/components/forms/FormInput';
 import FormInputPhone, { type OnPhoneChangeValue } from '@/components/forms/FormInputPhone';
 import FileUploader from '@/components/FileUploader';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import useCreatePatient from '@/queries/useCreatePatient';
 
 import { FormContainer } from './style';
 import { patientFormSchema, ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from './validation';
@@ -33,6 +34,17 @@ export default function PatientForm() {
     },
   });
 
+  const createPatientMutation = useCreatePatient({
+    onSuccess: (data: unknown) => {
+      alert('Patient created successfully!');
+      console.log('Patient created:', data);
+    },
+    onError: (error: unknown) => {
+      alert('Error creating patient. Please try again.');
+      console.error('Error creating patient:', error);
+    },
+  });
+
   const handlePhoneChange = (value: OnPhoneChangeValue) => {
     if (value) {
       setValue('dialCode', value.dialCode);
@@ -46,7 +58,16 @@ export default function PatientForm() {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log('Form data:', data);
+    const patientData = {
+      name: data.name,
+      email: data.email,
+      image: data.image,
+      dial_code: data.dialCode,
+      country_code: data.countryCode,
+      phone_number: data.phoneNumber,
+    };
+
+    createPatientMutation.mutate(patientData);
   };
 
   return (
@@ -89,7 +110,9 @@ export default function PatientForm() {
         )}
       />
 
-      <PrimaryButton type="submit">Create</PrimaryButton>
+      <PrimaryButton type="submit" isLoading={createPatientMutation.isPending}>
+        Create
+      </PrimaryButton>
     </FormContainer>
   );
 }
