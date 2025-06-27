@@ -20,7 +20,7 @@ cp frontend/.env.example frontend/.env
 # Edit frontend/.env with your configuration
 ```
 
-### Run on development mode
+### Run in development mode
 ```bash
 docker compose up
 ```
