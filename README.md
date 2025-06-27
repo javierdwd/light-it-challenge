@@ -24,8 +24,3 @@ cp frontend/.env.example frontend/.env
 ```bash
 docker compose up
 ```
-
-### Run on production mode
-```bash
-docker compose -f docker-compose.prod.yml up
-```
