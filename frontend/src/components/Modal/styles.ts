@@ -14,9 +14,12 @@ export const Backdrop = styled.div`
   padding: ${({ theme }) => theme.spacing.md};
   opacity: 0;
   transition: opacity 500ms ease-in-out;
+  backdrop-filter: blur(0px);
+  will-change: opacity, backdrop-filter;
 
   &[data-is-open='true'] {
     opacity: 1;
+    backdrop-filter: blur(2px);
   }
 `;
 
@@ -30,14 +33,17 @@ export const Container = styled.div`
   overflow-y: auto;
   position: relative;
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.9) translateY(20px);
   transition:
     opacity 500ms ease-in-out,
-    transform 500ms ease-in-out;
+    transform 500ms ease-in-out,
+    box-shadow 500ms ease-in-out;
+  will-change: opacity, transform, box-shadow;
 
   &[data-is-open='true'] {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
