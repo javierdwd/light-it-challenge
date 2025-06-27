@@ -37,14 +37,14 @@ Create a complete Modal component system that includes a main Modal component, M
 - ✅ Test opening and closing cycle works correctly
 - ✅ Verify state transitions happen in correct order
 
-### [ ] Objective 4. Create useModal Hook with Basic Integration
+### ✅ Objective 4. Create useModal Hook with Basic Integration
 **Sub-tasks:**
-- [ ] Create `useModal.ts` hook file
-- [ ] Implement hook with `defaultOpen` parameter and ref creation
-- [ ] Add useEffect for defaultOpen behavior
-- [ ] Return object with ref and any additional props needed by Modal
-- [ ] Test basic integration: `const modal = useModal()` and `<Modal {...modal} />`
-- [ ] Export useModal from index.ts
+- ✅ Create `useModal.ts` hook file
+- ✅ Implement hook with `defaultOpen` parameter and ref creation
+- ✅ Add useEffect for defaultOpen behavior
+- ✅ Return object with ref and any additional props needed by Modal
+- ✅ Test basic integration: `const modal = useModal()` and `<Modal ref={modal.ref} />`
+- ✅ Export useModal from index.ts
 
 ### [ ] Objective 5. Implement Modal Animations
 **Sub-tasks:**
