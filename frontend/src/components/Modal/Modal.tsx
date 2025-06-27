@@ -15,14 +15,21 @@ export interface ModalRef {
 
 const Modal = forwardRef<ModalRef, ModalProps>(({ children, className }, ref) => {
   const [isRendered, setIsRendered] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useImperativeHandle(ref, () => ({
     open: () => {
       setIsRendered(true);
+      // Set isOpen to true after rendering to trigger animations
+      setTimeout(() => setIsOpen(true), 0);
     },
     close: () => {
-      // Will be implemented in next objective
-      console.log('Modal close method called');
+      // First set isOpen to false to trigger exit animation
+      setIsOpen(false);
+      // After 500ms delay, unmount the component
+      setTimeout(() => {
+        setIsRendered(false);
+      }, 500);
     },
   }));
 
@@ -32,8 +39,8 @@ const Modal = forwardRef<ModalRef, ModalProps>(({ children, className }, ref) =>
   }
 
   return (
-    <Backdrop className={className} data-testid="modal-backdrop">
-      <Container>{children}</Container>
+    <Backdrop className={className} data-testid="modal-backdrop" data-is-open={isOpen}>
+      <Container data-is-open={isOpen}>{children}</Container>
     </Backdrop>
   );
 });
