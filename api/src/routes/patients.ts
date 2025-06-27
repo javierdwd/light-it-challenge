@@ -78,7 +78,7 @@ router.post(
         });
       }
 
-      // Does the user load an image?
+      // Did the user load an image?
       if (!imagePath) {
         res.status(422).json({
           message: 'Image is required',
@@ -87,7 +87,7 @@ router.post(
         return;
       }
 
-      // Does the image type is valid?
+      // Is the image type valid?
       if (!imageType || !IMAGE_FILE_MIMETYPES.includes(imageType)) {
         res.status(422).json({
           message: 'Please provide a valid image file. Only JPG files are allowed.',
@@ -96,7 +96,7 @@ router.post(
         return;
       }
 
-      // Does the provide a valid phone number?
+      // Is the phone number valid?
       const phoneNumber = `${dial_code}${phone_number}`;
       const parsedPhoneNumber = parsePhoneNumber(phoneNumber, country_code);
 
